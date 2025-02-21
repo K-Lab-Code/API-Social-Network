@@ -45,7 +45,7 @@ export const createThought = async (req: Request, res: Response) => {
 export const updateThought = async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
-        const thought = await Thought.findOneAndUpdate({ _id: id }, req.body);
+        const thought = await Thought.findOneAndUpdate({ _id: id }, req.body, { new: true });
         if (thought) {
             res.json(thought);
         } else {
@@ -54,7 +54,7 @@ export const updateThought = async (req: Request, res: Response) => {
     } catch (error: any) {
         res.status(400).json({ message: error.message });
     }
-};//done
+};//done weird glitch dosent return new value.
 
 // DELETE /Thoughts/:id
 export const deleteThought = async (req: Request, res: Response) => {
@@ -74,12 +74,14 @@ export const deleteThought = async (req: Request, res: Response) => {
 export const postReaction = async (req: Request, res: Response) => {
     try {
         const thought = await Thought.findOneAndUpdate(
-            { _id: req.body.thoughtId },
+            { _id: req.params.thoughtId },
             { $addToSet: { reactions: req.body}},
             { new: true }
         )
         if(thought){
             res.json(thought.reactions[(Number(thought.reactionCount) - 1)]);
+        } else {
+            res.status(400).json({message: "Something went wrong with the Thought"})
         }
     } catch (error: any) {
         res.status(500).json({ message: error.message });
@@ -89,14 +91,18 @@ export const postReaction = async (req: Request, res: Response) => {
 export const deleteReaction = async (req: Request, res: Response) => {
     try {
         const thought = await Thought.findOneAndUpdate(
-            { _id: req.body.thoughtId },
-            { $pull: {reactions: {reactionId: req.body.reactionId} } },
+            { _id: req.params.thoughtId },
+            { $pull: { reactions: { reactionId: req.params.reactionId } } },
             { new: true }
-        )
-        if(thought){
-            res.json({message: 'it worked'});
+        );
+        
+        if (thought) {
+            res.json({ message: 'Reaction deleted successfully' });
+        } else {
+            res.status(404).json({ message: 'Thought not found' });
         }
     } catch (error: any) {
+        console.error('Error deleting reaction:', error);
         res.status(500).json({ message: error.message });
     }
-};//
+};

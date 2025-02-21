@@ -28,6 +28,6 @@ router.delete('/:id', deleteThought);
 
 router.post('/:thoughtId/reactions', postReaction);
 
-router.delete(':thoughtId/reactions', deleteReaction);
+router.delete('/:thoughtId/reactions/:reactionId', deleteReaction);
 
 export { router as thoughtsRouter };
