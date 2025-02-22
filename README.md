@@ -1,9 +1,8 @@
 # API-Social-Network
-Mock API that models a social network
 
 ## Description
 
-This project is a Candidate Search Application that leverages the GitHub API to fetch and display profiles as potential hiring candidates. The purpose of this application is to serve as a mock hiring platform, showcasing my programming skills in TypeScript and React. It's a fantastic way to demonstrate the practical integration of APIs, and I highly encourage others to build a similar project to practice and enhance their coding skills with TypeScript and React.
+This project is a API that models a social network API. The purpose of this application is to serve as a mock api for a social network while also, showcasing my programming skills in TypeScript, MongoDB and Mongoose. It's a fantastic way to demonstrate the practical integration of APIs, and I highly encourage others try to build a similar project to practice and enhance their coding skills with nonSQL databases.
 
 ## Table of Contents
 
@@ -14,38 +13,42 @@ This project is a Candidate Search Application that leverages the GitHub API to 
 
 ## Installation
 
-- Use this link [https://candidate-search-earj.onrender.com](https://candidate-search-earj.onrender.com) to get to deployed sit or if you want to use it on your own machine use following steps below.
-- copy either all the files from the repository to your computer or use your git bash terminal to clone the repository down to your own machine. 
+- In order to copy the project start by coping the files by hand or downloading the project with ```git clone ``` command in your git terminal
 - make sure you have [node js](https://nodejs.org/en) and the package manager that comes with it.
-- run the following command in project folder terminal: "npm i" (don't include the quotation marks). This will download all the needed dependencies for the project
+- run the following command in project folder terminal: ```npm i``` This will download all the needed dependencies for the project
+- also make sure you have mongoDB database on same computer that is SocialNetworkDB or change the url in connection file of the project to match the mongoDB database you want to reach.
 
 ## Usage
 
-- After installing the project run in the terminal for project: "npm run dev" (don't include the quotation marks). This will compile the type script files and start the project.
-- The program some times will auto open the website in your browser but if not just put the following url in your browser: [http://localhost:5173/](http://localhost:5173/)
-- The website has two pages the home page and the potential Candidates page to navigate between the two click the name of page at top of screen.
-- When you first get to web site it start you in the home page.
-- The home page will present you with a picture of a profile from github and a list of detials including the accounts owner name, location, email, company they work for and bio. Most people have alot of that info empty so if theres not a name attached to the account then There user name displays instead and if the other data fields are empty a N/A will appear instead.
-- underneath all this info of the profile there is a minus and plus button.
-- If you click the minus button the account will be skipped an a new account will appear.
-- If you click the plus button you will also move on to the next account but the profile will be saved for the Potential Candidates page.
-
-![Image of Candidate Search Page](./screenshots/Screenshot-Candidate-Search.png)
-
-- On the Potential Candidate page a table of all the saved profiles will appear which each row representing a candidate.
-- There table has the a column for each data field for profile plus an additional one with a minus button.
-- Clicking on this button will reject the application and remove it from the table.
-
-![Image of Candidate Search Page](./screenshots/Screenshot-Potential-Candidates.png)
-
-- If there is no candiates left on the Home page a message that there are no more will be displayed
-- If there is no candiates saved on the Potential Candidates page then a message saying none have been saved yet will be displayed on that page.
-- If there is no candiates saved and no candiates left on home page then the website will fetch more profiles with API and start showing them.
-- For a walkthrough of how to use the application [Click Here](https://drive.google.com/file/d/1vGGjVFsZkQqwdRA3scSppThX_5ybFP99/view).
+- After youve got the project installed this far you can run the command ```npm run seed``` in project folder to seed the database with a couple of users. They won't have any thoughts, reactions, or friends at this point yet, but at least you won't have to start your database off from scratch. 
+- Additionally this will reset your databse as well.
+- Next run ```npm start ``` in your project terminal
+- The database is set up so basically you can add users who have some info about them including a list of thoughts they have posted.
+- These thoughts can have an array of reactions to them from other users.
+-additionally the users all have id's and the users also have a friend list that can store a list of other users id's who are there friends.
+- for better understanding of the fields in users and thoughts look at the files in model folder to get a better grasp.
+- You can run various http request to your api to get and change data from your database with root http://localhost:3001 and the following request:
+- GET /api/users to to get all users back.
+- GET /api/users/:userId to get specific user databack.
+- POST /api/users (info in json body) to create a new user.
+- POST /api/users/:userId (info in json body) to update a user.
+- DELETE /api/users/:userId to delete a user.
+- POST /api/users/:userId/friends/:friendId to add friend to user in user id.
+- DELETE /api/users/:userId/friends/:friendId to delete the friend using friendId from user listed in userId.
+- GET /api/though to get all thoughts in database back.
+- GET /api/though/:thoughId to get a specific thought back from api.
+- POST /api/though (info in body of http) to create a new thought.
+- PUT /api/though/:thoughId (info in body of http) to update a thought.
+- DELETE /api/though/:thoughId to delete a thought from database.
+- POST /api/thoughts/:thoughtId/reactions (info in http body) to create a reaction to a thought.
+- DELETE /api/thoughts/:thoughtId/reactions/:reactionId to delete a reaction from a thought.
+- Here's a walk-through video as a demonstration using Insomnia: [Click Here](https://drive.google.com/file/d/1jGQ3y7ivzkqcPUQx0r3lSGXoXP9m5IvS/view?usp=sharing)
 
 ## Credits
 
 Project Designer: Kalab Smith
+- [K-Lab-Code](https://github.com/K-Lab-Code)
+- [kalabsb@me.com](mailto:kalabsb@me.com)
 
 ## License
 
