@@ -42,7 +42,7 @@ This project is a API that models a social network API. The purpose of this appl
 - DELETE /api/though/:thoughId to delete a thought from database.
 - POST /api/thoughts/:thoughtId/reactions (info in http body) to create a reaction to a thought.
 - DELETE /api/thoughts/:thoughtId/reactions/:reactionId to delete a reaction from a thought.
-- Here's a walk-through video as a demonstration using Insomnia: [Click Here](https://drive.google.com/file/d/1jGQ3y7ivzkqcPUQx0r3lSGXoXP9m5IvS/view?usp=sharing)
+- Here's a walk-through video as a demonstration using Insomnia: [Click Here](https://drive.google.com/file/d/1sOX0yiGvM_4kPxhTxD-mYBJ6QgkWkubI/view?usp=sharing)
 
 ## Credits
 
